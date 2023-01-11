@@ -1,7 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
-from utils import set_text
+from plotex.utils import set_text
 
 
 def column_frequency(ax, df, column, cmap=None, percent=True, **piekwargs):

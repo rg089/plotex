@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import random
 import numpy as np
-from utils.plotting import optimize_labels as optim_labels
+from plotex.utils.plotting import optimize_labels as optim_labels
 
 
 def group_reduce(ax, df, group_col, value_col, reduce='mean', cmap=None, color=None, singlecolor=True, optimize_labels=True, **barkwargs):
