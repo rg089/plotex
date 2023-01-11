@@ -2,8 +2,8 @@ import requests
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-from utils.general import check_if_exists, save_file, combine_hash, find_value_from_keys
-from utils.hashing import hash_url
+from plotex.utils.general import check_if_exists, save_file, combine_hash, find_value_from_keys
+from plotex.utils.hashing import hash_url
 
 
 class BackendConfiguration():

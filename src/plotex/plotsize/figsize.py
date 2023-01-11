@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 import difflib
-from configuration import BackendConfiguration
+from plotex.configuration import BackendConfiguration
 
 
 class Sizing():

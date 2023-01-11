@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-from plotsize import Sizing
-from configuration import BackendConfiguration
-from utils import set_text, save, copy_docstring
+from .plotsize import Sizing
+from .configuration import BackendConfiguration
+from .utils import set_text, save, copy_docstring
 
 
 class Controller:
