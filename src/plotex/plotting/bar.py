@@ -32,6 +32,8 @@ def group_reduce(ax, df, group_col, value_col, reduce='mean', cmap=None, color=N
 
     if color is None:
         if cmap is not None:
+            if isinstance(cmap, 'str'): cmap = sns.color_palette(cmap)
+                
             if singlecolor: color = random.choice(cmap[:len(labels)])
             else: color = cmap[:len(labels)]
 
@@ -64,7 +66,11 @@ def stack_count(ax, df, basecol, stackcol, horizontal=True, cmap='pastel', color
     bases = df[basecol].unique()
     prev_counts = np.zeros(len(bases))
 
-    color_map = sns.set_palette(cmap)
+    if isinstance(cmap, str):
+        color_map = sns.color_palette(cmap)
+    else:
+        color_map = cmap
+        
     if color is None or isinstance(color, str): 
         colors = color_map[:len(labels)]
     

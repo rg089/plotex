@@ -26,6 +26,7 @@ def column_frequency(ax, df, column, cmap=None, percent=True, **piekwargs):
         data = data/data.sum()*100
 
     if cmap is not None:
+        if isinstance(cmap, str): cmap = sns.color_palette(cmap)
         colors = cmap[:len(data)]
     
     autopct = '%.0f'
