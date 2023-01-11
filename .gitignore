@@ -155,3 +155,5 @@ cython_debug/
 
 instructions.md
 create_structure.sh
+*/.DS_Store
+.DS_Store
