@@ -32,7 +32,7 @@ def group_reduce(ax, df, group_col, value_col, reduce='mean', cmap=None, color=N
 
     if color is None:
         if cmap is not None:
-            if isinstance(cmap, 'str'): cmap = sns.color_palette(cmap)
+            if isinstance(cmap, str): cmap = sns.color_palette(cmap)
                 
             if singlecolor: color = random.choice(cmap[:len(labels)])
             else: color = cmap[:len(labels)]
