@@ -8,7 +8,7 @@ from plotex.utils.hashing import hash_url
 
 class BackendConfiguration():
     
-    CONFIG_FILE_PATH = "config_files/config.txt"
+    CONFIG_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config_files/config.txt")
     CONFIG_URL = "https://gist.githubusercontent.com/rg089/26d06984604c92cf452e77ee345434ea/raw/98730d2afa1be6381b4c9c0f6f18da440200fc9a/latex_plots.txt"
     
     
