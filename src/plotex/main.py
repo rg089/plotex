@@ -23,7 +23,7 @@ class Plotex:
         self.config.initialize()
         
         
-    def generate_skeleton(self, width=None, publisher=None, width_in_pts=True, reinitialize=True, fraction=1, 
+    def skeleton(self, width=None, publisher=None, width_in_pts=True, reinitialize=True, fraction=1, 
                    subplots=(1, 1), **kwargs):
         """
         finds the ideal size of the plot and adjusts the text sizes according to the required dimensions
