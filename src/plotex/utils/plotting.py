@@ -63,20 +63,20 @@ def set_text(plt:plt=None, ax:matplotlib.axes.Axes=None, xlabel=None, ylabel=Non
         if ax is not None: ax.set_title(title)
         elif plt is not None: plt.title(title)
         
+    if xtickrot is not None:
+        if ax is not None: ax.tick_params(axis='x', rotation=xtickrot)
+        elif plt is not None: plt.xticks(rotation=xtickrot)
+        
     assert xticklabels is None or (xticklabels is not None and xticklocs is not None)
     if xticklocs is not None:
         if ax is not None: ax.set_xticks(xticklocs, labels=xticklabels)
         elif plt is not None: plt.xticks(ticks=xticklocs, labels=xticklabels)
         
-    if xtickrot is not None:
-        if ax is not None: ax.set_xticklabels(ax.get_xticks(), rotation = xtickrot)
-        elif plt is not None: plt.xticks(rotation=xtickrot)
-
+    if ytickrot is not None:
+        if ax is not None: ax.tick_params(axis='y', rotation=ytickrot)
+        elif plt is not None: plt.yticks(rotation=ytickrot)
+        
     assert yticklabels is None or (yticklabels is not None and yticklocs is not None)
     if yticklocs is not None:
         if ax is not None: ax.set_yticks(yticklocs, labels=yticklabels)
         elif plt is not None: plt.yticks(ticks=yticklocs, labels=yticklabels)
-        
-    if ytickrot is not None:
-        if ax is not None: ax.set_yticklabels(ax.get_yticks(), rotation = ytickrot)
-        elif plt is not None: plt.yticks(rotation=ytickrot)
