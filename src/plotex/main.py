@@ -47,7 +47,7 @@ class Plotex:
     def update_textsize(self, reinitialize=True, **kwargs):
         """
         This function changes the font size of various text elements in the plot such as xlabel, \
-        ylabel, title, sticks, etc., by a specified offset. Uses deterministic and probabilistic \
+        ylabel, title, ticks, etc., by a specified offset. Uses deterministic and probabilistic \
         matching to determine and map the keyword argument to the required property
         
         :param reinitialize: initialize size params to those created by `get_size` after adjusting for\
@@ -56,6 +56,31 @@ class Plotex:
         the argument is the key and the offset is the value.
         """
         self.sizer.update_textsize(reinitialize=reinitialize, **kwargs)
+
+
+    def update_textweight(self, reinitialize=False, **kwargs):
+        """
+        This function changes the font weight of various text elements in the plot such as xlabel, \
+        ylabel, title. The values are 'light', 'normal', 'bold'.
+        Uses deterministic and probabilistic matching to determine and map the keyword 
+        \ argument to the required property
+        
+        :param reinitialize: initialize size params to those created by `get_size` after adjusting for\
+            columns, fraction etc.
+        :param kwargs: flexible keyword arguments specified by the user, where the name of \
+        the argument is the key and the weight is the value.
+        """
+        self.sizer.update_textweight(reinitialize=reinitialize, **kwargs)
+    
+
+    def remove_ticks(self, xtick=True, ytick=True):
+        """
+        remove the tick marks 
+
+        :param xtick: remove ticks on x-axis, defaults to True
+        :param ytick: remove ticks on y-axis, defaults to True
+        """
+        self.sizer.remove_ticks(xtick=xtick, ytick=ytick)
     
     
     @copy_docstring(set_text)
@@ -68,3 +93,4 @@ class Plotex:
     @copy_docstring(save)
     def save(self, save_path, fig=None, plt=None, format='pdf'):
         save(save_path, fig=fig, plt=plt, format=format)
+        
