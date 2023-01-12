@@ -93,8 +93,8 @@ class Sizing():
             
             parameter = parameter[0]
             
-        if parameter not in main_params:
-            parameter = [k for k, v in main_params.items() if v == parameter][0]
+            if parameter not in main_params:
+                parameter = [k for k, v in main_params.items() if v == parameter][0]
             
         return parameter
         
@@ -149,7 +149,7 @@ class Sizing():
         
         font_params = {
                     'axes.titleweight': 'title',
-                    'axes.labelwieght': 'label'}
+                    'axes.labelweight': 'label'}
         
         special_params = {'xlabel': 'axes.labelweight', 'ylabel': 'axes.labelweight', 
                           'title': 'axes.titlweight'}
