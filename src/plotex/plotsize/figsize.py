@@ -67,7 +67,37 @@ class Sizing():
             curr_value = float(plt.rcParams[param])
             plt.rcParams[param] = math.ceil(curr_value/num_cols*fraction)
         self.__save_params()
+        
+        
+    def __find_matching_param(self, key, main_params, special_params={}):
+        """
+        find the matching paramater to the key in the matplotlib.rcParams file specified by \
+        the main_params and special_params
+
+        :param key: the key with which we search
+        :param main_params: the main dictionary, with keys as rcParams keys and values as their shortened versions
+        :param special_params: direct mapping to handle exceptions where probabilstic matching might fail, defaults to {}
+        
+        :return: the found parameter, or None if not found
+        """
+        all_matches = list(main_params.keys()) + list(main_params.values()) # Search over both keys and values
+        
+        if key in special_params:
+            parameter = special_params[key]
+        else:
+            parameter = difflib.get_close_matches(key, all_matches, n=1)
             
+            if not parameter:
+                print(f"[INFO] No match found for argument: {key}!")
+                return None
+            
+            parameter = parameter[0]
+            
+        if parameter not in main_params:
+            parameter = [k for k, v in main_params.items() if v == parameter][0]
+            
+        return parameter
+        
 
     def update_textsize(self, reinitialize=True, **kwargs):
         """
@@ -94,26 +124,56 @@ class Sizing():
         special_params = {'xlabel': 'axes.labelsize', 'ylabel': 'axes.labelsize', 
                           'title': 'axes.titlesize', 'legend': 'legend.fontsize'}
         
-        all_matches = list(font_params.keys()) + list(font_params.values()) # Search over both keys and values
-        
         for key, value in kwargs.items():
-            if key in special_params:
-                font_param = special_params[key]
-            else:
-                font_param = difflib.get_close_matches(key, all_matches, n=1)
-                if not font_param:
-                    print(f"[INFO] No match found for argument: {key}!")
-                    continue
-                
-                font_param = font_param[0]
-                
-            if font_param not in font_params:
-                font_param = [k for k, v in font_params.items() if v == font_param][0]
-            
+            font_param = self.__find_matching_param(key=key, main_params=font_params, 
+                                                    special_params=special_params)
+            if font_param is None: continue
             current_size = plt.rcParams[font_param]
             plt.rcParams[font_param] = current_size + value
+            
+            
+    def update_textweight(self, reinitialize=False, **kwargs):
+        """
+        This function changes the font weight of various text elements in the plot such as xlabel, \
+        ylabel, title. The values are 'light', 'normal', 'bold'.
+        Uses deterministic and probabilistic matching to determine and map the keyword 
+        \ argument to the required property
+        
+        :param reinitialize: initialize size params to those created by `get_size` after adjusting for\
+            columns, fraction etc.
+        :param kwargs: flexible keyword arguments specified by the user, where the name of \
+        the argument is the key and the weight is the value.
+        """
+        if reinitialize:
+            self.__load_params()
+        
+        font_params = {
+                    'axes.titleweight': 'title',
+                    'axes.labelwieght': 'label'}
+        
+        special_params = {'xlabel': 'axes.labelweight', 'ylabel': 'axes.labelweight', 
+                          'title': 'axes.titlweight'}
+        
+        for key, value in kwargs.items():
+            font_param = self.__find_matching_param(key, main_params=font_params, 
+                                                    special_params=special_params)
+            if font_param is None: continue            
+            plt.rcParams[font_param] = value
     
 
+    def remove_ticks(self, xtick=True, ytick=True):
+        """
+        remove the tick marks 
+
+        :param xtick: remove ticks on x-axis, defaults to True
+        :param ytick: remove ticks on y-axis, defaults to True
+        """
+        if xtick:
+            plt.rcParams['xtick.major.size'] = 0
+        if ytick:
+            plt.rcParams['ytick.major.size'] = 0
+        
+        
     def convert_width_to_inches(self, width=None, publisher=None):
         """
         convert width from pts to inches
