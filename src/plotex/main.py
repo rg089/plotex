@@ -5,7 +5,7 @@ from .configuration import BackendConfiguration
 from .utils import set_text, save, copy_docstring
 
 
-class Controller:
+class Plotex:
     """
     a facade over various different functions in the module for a direct one-point access
     """
