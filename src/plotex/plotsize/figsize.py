@@ -172,7 +172,23 @@ class Sizing():
             plt.rcParams['xtick.major.size'] = 0
         if ytick:
             plt.rcParams['ytick.major.size'] = 0
-        
+            
+            
+    def set_lim(self, ax, xlims=(None, None), ylims=(None, None)):
+        """
+        set the starting and ending points of the x and y axes
+
+        :param ax: the matplotlib axis object
+        :param xlims: tuple containing the (min, max) values of the \
+                        x axis, defaults to (None, None)
+        :param ylims: tuple containing the (min, max) values of the \
+                        y axis, defaults to (None, None)
+        """
+        if xlims[0] is not None and xlims[1] is not None:
+            ax.set_xlim(xlims[0], xlims[1])
+        if ylims[0] is not None and ylims[1] is not None:
+            ax.set_ylim(ylims[0], ylims[1])
+
         
     def convert_width_to_inches(self, width=None, publisher=None):
         """

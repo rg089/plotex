@@ -81,6 +81,22 @@ class Plotex:
         :param ytick: remove ticks on y-axis, defaults to True
         """
         self.sizer.remove_ticks(xtick=xtick, ytick=ytick)
+        
+
+    def set_lim(self, ax, xlims=(None, None), ylims=(None, None)):
+        """
+        set the starting and ending points of the x and y axes
+
+        :param ax: the matplotlib axis object
+        :param xlims: tuple containing the (min, max) values of the \
+                        x axis, defaults to (None, None)
+        :param ylims: tuple containing the (min, max) values of the \
+                        y axis, defaults to (None, None)
+        """
+        if xlims[0] is not None and xlims[1] is not None:
+            ax.set_xlim(xlims[0], xlims[1])
+        if ylims[0] is not None and ylims[1] is not None:
+            ax.set_ylim(ylims[0], ylims[1])
     
     
     @copy_docstring(set_text)
