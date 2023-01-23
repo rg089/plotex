@@ -80,3 +80,42 @@ def set_text(plt:plt=None, ax:matplotlib.axes.Axes=None, xlabel=None, ylabel=Non
     if yticklocs is not None:
         if ax is not None: ax.set_yticks(yticklocs, labels=yticklabels)
         elif plt is not None: plt.yticks(ticks=yticklocs, labels=yticklabels)
+        
+        
+def custom_legend(ax, text, xy=(0.5, 0.5), box=True, box_bgcolor=(1.0, 1, 1, 1),
+                  box_edgecolor=(0.0, 0.0, 0.0, 0.1)):
+    """
+    create a custom legend/text (without color strip) 
+
+    :param ax: mpl axes object
+    :param text: the text to add (str or list); if list added with `\n`
+    :param xy: the (x,y) offset fraction, relative to the BOTTOM-LEFT point, 
+                        defaults to (0.5, 0.5)
+    :param box: whether to add a bounding box, defaults to True
+    :param box_bgcolor: the background color of the box, defaults to (1.0, 1, 1, 1)
+    :param box_edgecolor: the edge color of the box, defaults to (0.0, 0.0, 0.0, 0.1)
+    
+    :return ax: the axis object
+    """
+    
+    if isinstance(text, list):
+        text = '\n'.join(text)
+    
+    assert isinstance(text, str)
+    
+    if box:
+        ax.annotate(text,
+                xy=xy, xycoords='axes fraction',
+                textcoords='offset points',
+                bbox=dict(boxstyle="round", fc=box_bgcolor,
+                          ec=box_edgecolor))
+    else:
+        ax.annotate(text,
+                xy=xy, xycoords='axes fraction',
+                textcoords='offset points')
+    
+    return ax
+    
+    
+custom_text = custom_legend
+    
