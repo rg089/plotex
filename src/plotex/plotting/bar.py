@@ -84,3 +84,52 @@ def stack_count(ax, df, basecol, stackcol, horizontal=True, cmap='pastel', color
             
     ax.legend()
     return ax
+
+
+def bar_locs(ax, space=1, num_bars=None, xticklocs=None):
+    """
+    set the spacing for the bar graph. Higher values of \
+    `space` automatically reduces the width of the bars. \
+    either `num_ticks` or `xticklocs` should be specified \
+    (not both) where if `xticklocs` is specified, then only \
+    the xlim is set (space doesn't matter, just adjust the bar width)
+    
+
+    :param ax: the matplotlib axis object
+    :param space: the spacing between bars, defaults to 1
+    :param num_bars: number of bars, defaults to None
+    :param xticklocs: the locations of the bars, defaults to None
+    
+    :return ax, xticklocs: returns the axis and the xticklocs
+    """
+    assert xticklocs is not None or num_bars is not None
+    
+    if xticklocs is None:
+        xticklocs = np.arange(len(num_bars))*space
+        ax.set_xlim(-1, len(xticklocs)*space)
+    else:
+        start, end = xticklocs[0], xticklocs[-1]
+        ax.set_xlim(start-1, end+1)
+        
+    return ax, xticklocs
+
+
+def label_above(ax, bars, labels, height_offset=0.1):
+    """
+    set the `labels` on top of the bars
+
+    :param ax: matplotlib axes object
+    :param bars: the bar objects (`bars = ax.bar(...)`)
+    :param labels: the list of labels to set on top
+    :param height_offset: the offset of height, defaults to 0.1
+    
+    :return ax: the axes object
+    """
+    for i, p in enumerate(bars):
+        x, height, width = p.get_x(), p.get_height(), p.get_width()
+        
+        ax.text(x=x+width/2, y=height+height_offset,
+        s=f'{labels[i]}',
+        ha='center')
+        
+    return ax
