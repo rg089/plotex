@@ -13,7 +13,7 @@ class Plotex:
         Args:
             **kwargs: parameters for the config file, the params include
                 `url` \
-        (the url for the config file), `cmap/palette` for the cmap, `style/theme`
+        (the url for the config file), `cmap/palette` for the cmap, `style/theme` \
         for the seaborn style
         """
         self.config = BackendConfiguration(**kwargs)
