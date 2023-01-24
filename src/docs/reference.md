@@ -4,3 +4,5 @@ reference for the technical implementation of the
 `calculator` project code.
 
 ::: plotex
+    options:
+      show_submodules: true
