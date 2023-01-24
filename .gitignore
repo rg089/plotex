@@ -157,5 +157,5 @@ instructions.md
 */.DS_Store
 .DS_Store
 # src/docs.sh
-# src/site
+src/site
 # src/mkdocs.yml
