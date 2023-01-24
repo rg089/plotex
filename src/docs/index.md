@@ -14,8 +14,8 @@ project documentation as described by Daniele Procida
 in the [Diátaxis documentation framework](https://diataxis.fr/)
 and consists of four separate parts:
 
-1. [How-To Guide](how-to-guides.md)
-2. [Reference](reference.md)
+1. [Frequent Snippets](frequent.md)
+2. [API](api.md)
 
 Quickly find what you're looking for depending on
 your use case by looking at the different pages.

@@ -21,7 +21,7 @@ plugins:
   - search
   
 nav:
-  - Calculation Docs: index.md
-  - How-To Guides: how-to-guides.md
-  - reference.md
+  - Overview: index.md
+  - API: api.md
+  - Frequent Snippets: frequent.md
 
