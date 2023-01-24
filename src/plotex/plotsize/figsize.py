@@ -51,7 +51,7 @@ class Sizing():
 
 
     def adjust_font_size(self, subplots, fraction, **kwargs):
-        """adjust the font_size based on the fraction and number of columns and \
+        """adjust the font_size based on the fraction and number of columns and
         saves the adjusted params
 
         Args:
@@ -68,7 +68,7 @@ class Sizing():
         
         
     def __find_matching_param(self, key, main_params, special_params={}):
-        """find the matching paramater to the key in the matplotlib.rcParams file specified by \
+        """find the matching paramater to the key in the matplotlib.rcParams file specified by
         the main_params and special_params
 
         Args:
@@ -101,15 +101,15 @@ class Sizing():
         
 
     def update_textsize(self, reinitialize=True, **kwargs):
-        """This function changes the font size of various text elements in the plot such as xlabel, \
-        ylabel, title, sticks, etc., by a specified offset. Uses deterministic and probabilistic \
+        """This function changes the font size of various text elements in the plot such as xlabel,
+        ylabel, title, sticks, etc., by a specified offset. Uses deterministic and probabilistic
         matching to determine and map the keyword argument to the required property
 
         Args:
             reinitialize: initialize size params to those created by
-                `get_size` after adjusting for\ columns, fraction etc.
+                `get_size` after adjusting for columns, fraction etc.
             **kwargs: flexible keyword arguments specified by the user,
-                where the name of \
+                where the name of
         the argument is the key and the offset is the value.
         """
         if reinitialize:
@@ -135,16 +135,16 @@ class Sizing():
             
             
     def update_textweight(self, reinitialize=False, **kwargs):
-        """This function changes the font weight of various text elements in the plot such as xlabel, \
+        """This function changes the font weight of various text elements in the plot such as xlabel,
         ylabel, title. The values are 'light', 'normal', 'bold'.
         Uses deterministic and probabilistic matching to determine and map the keyword
-        \ argument to the required property
+        argument to the required property
 
         Args:
             reinitialize: initialize size params to those created by
-                `get_size` after adjusting for\ columns, fraction etc.
+                `get_size` after adjusting for columns, fraction etc.
             **kwargs: flexible keyword arguments specified by the user,
-                where the name of \
+                where the name of
         the argument is the key and the weight is the value.
         """
         if reinitialize:
@@ -182,9 +182,9 @@ class Sizing():
 
         Args:
             ax: the matplotlib axis object
-            xlims: tuple containing the (min, max) values of the \ x
+            xlims: tuple containing the (min, max) values of the x
                 axis, defaults to (None, None)
-            ylims: tuple containing the (min, max) values of the \ y
+            ylims: tuple containing the (min, max) values of the y
                 axis, defaults to (None, None)
         """
         if xlims[0] is not None and xlims[1] is not None:

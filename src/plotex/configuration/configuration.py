@@ -21,7 +21,7 @@ class BackendConfiguration():
             override: if the config from the specified link already
                 exists, whether to create it again (used if in-place
                 changes have been made to the url)
-        :kwargs: other keyword arguments can include arguments for theme, style, palette etc.
+            kwargs: other keyword arguments can include arguments for theme, style, palette etc.
         """
         if url is None:
             self.url = BackendConfiguration.CONFIG_URL
