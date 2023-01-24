@@ -156,3 +156,5 @@ cython_debug/
 instructions.md
 */.DS_Store
 .DS_Store
+src/plotex/docs
+src/plotex/mkdocs.yml

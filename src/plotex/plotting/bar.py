@@ -7,20 +7,24 @@ from plotex.utils.plotting import optimize_labels as optim_labels
 
 
 def group_reduce(ax, df, group_col, value_col, reduce='mean', cmap=None, color=None, singlecolor=True, optimize_labels=True, **barkwargs):
-    """
-    create a bar chart with the x axis as the distinct values in a column, and the y axis as the reduced values in another column
+    """create a bar chart with the x axis as the distinct values in a column, and the y axis as the reduced values in another column
 
-    :param ax: the matplotlib axis
-    :param df: dataframe containing information
-    :param group_col: the column/list of columns to groupby
-    :param value_col: the column whose value to reduce
-    :param reduce: a string or function for the reduction method, defaults to 'mean'
-    :param cmap: the colormap, defaults to None
-    :param color: the color to use, defaults to None
-    :param singlecolor: whether to use a singlecolor for all the bars, defaults to True
-    :param optimize_labels: whether to optimize and reorder labels based on their length, defaults to True
-    
-    :return: the axis object
+    Args:
+        ax: the matplotlib axis
+        df: dataframe containing information
+        group_col: the column/list of columns to groupby
+        value_col: the column whose value to reduce
+        reduce: a string or function for the reduction method, defaults
+            to 'mean'
+        cmap: the colormap, defaults to None
+        color: the color to use, defaults to None
+        singlecolor: whether to use a singlecolor for all the bars,
+            defaults to True
+        optimize_labels: whether to optimize and reorder labels based on
+            their length, defaults to True
+
+    Returns:
+        the axis object
     """
     group_object = df.groupby(group_col)[value_col].aggregate(reduce)
     
@@ -49,18 +53,22 @@ def group_reduce(ax, df, group_col, value_col, reduce='mean', cmap=None, color=N
 
 
 def stack_count(ax, df, basecol, stackcol, horizontal=True, cmap='pastel', color=None, **barkwargs):
-    """
-    create a stacked bar chart with basecol as the labels and stackcol as the column providing values
+    """create a stacked bar chart with basecol as the labels and stackcol as the column providing values
 
-    :param ax: matplotlib axes object
-    :param df: the dataframe
-    :param basecol: the base column: y-axis in case of horizontal bar/ x-axis in case of vertical bar
-    :param stackcol: the column with the value counts which stacks on itself
-    :param horizontal: whether to create a horizontal bar chart, defaults to True
-    :param cmap: the colormap to use, defaults to 'pastel'
-    :param color: the color scheme to use, defaults to None
-    
-    :return ax: the axes object
+    Args:
+        ax: matplotlib axes object
+        df: the dataframe
+        basecol: the base column: y-axis in case of horizontal bar/
+            x-axis in case of vertical bar
+        stackcol: the column with the value counts which stacks on
+            itself
+        horizontal: whether to create a horizontal bar chart, defaults
+            to True
+        cmap: the colormap to use, defaults to 'pastel'
+        color: the color scheme to use, defaults to None
+
+    Returns:
+        `ax`, the axes object
     """
     labels = df[stackcol].unique()
     bases = df[basecol].unique()
@@ -87,20 +95,20 @@ def stack_count(ax, df, basecol, stackcol, horizontal=True, cmap='pastel', color
 
 
 def bar_locs(ax, space=1, num_bars=None, xticklocs=None):
-    """
-    set the spacing for the bar graph. Higher values of \
+    """set the spacing for the bar graph. Higher values of \
     `space` automatically reduces the width of the bars. \
     either `num_ticks` or `xticklocs` should be specified \
     (not both) where if `xticklocs` is specified, then only \
     the xlim is set (space doesn't matter, just adjust the bar width)
-    
 
-    :param ax: the matplotlib axis object
-    :param space: the spacing between bars, defaults to 1
-    :param num_bars: number of bars, defaults to None
-    :param xticklocs: the locations of the bars, defaults to None
-    
-    :return ax, xticklocs: returns the axis and the xticklocs
+    Args:
+        ax: the matplotlib axis object
+        space: the spacing between bars, defaults to 1
+        num_bars: number of bars, defaults to None
+        xticklocs: the locations of the bars, defaults to None
+
+    Returns:
+        `ax, xticklocs`, returns the axis and the xticklocs
     """
     assert xticklocs is not None or num_bars is not None
     
@@ -115,15 +123,16 @@ def bar_locs(ax, space=1, num_bars=None, xticklocs=None):
 
 
 def label_above(ax, bars, labels, height_offset=0.1):
-    """
-    set the `labels` on top of the bars
+    """set the `labels` on top of the bars
 
-    :param ax: matplotlib axes object
-    :param bars: the bar objects (`bars = ax.bar(...)`)
-    :param labels: the list of labels to set on top
-    :param height_offset: the offset of height, defaults to 0.1
-    
-    :return ax: the axes object
+    Args:
+        ax: matplotlib axes object
+        bars: the bar objects (`bars = ax.bar(...)`)
+        labels: the list of labels to set on top
+        height_offset: the offset of height, defaults to 0.1
+
+    Returns:
+        `ax`, the axes object
     """
     for i, p in enumerate(bars):
         x, height, width = p.get_x(), p.get_height(), p.get_width()

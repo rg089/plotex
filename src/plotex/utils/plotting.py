@@ -3,12 +3,14 @@ import matplotlib
 
 
 def optimize_labels(labels, values):
-    """
-    optimizes the bar chart labels by interweaving the labels based on their length to minimize overlap
+    """optimizes the bar chart labels by interweaving the labels based on their length to minimize overlap
 
-    :param labels: the original labels
-    :param values: the original values
-    :return: optimized labels, values
+    Args:
+        labels: the original labels
+        values: the original values
+
+    Returns:
+        optimized labels, values
     """
     mapper = {l:v for l,v in zip(labels, values)}
     sorted_labels = sorted(labels, key=len)
@@ -33,20 +35,22 @@ def optimize_labels(labels, values):
 
 def set_text(plt:plt=None, ax:matplotlib.axes.Axes=None, xlabel=None, ylabel=None, title=None, xticklocs=None, xticklabels=None,
                xtickrot=None, yticklocs=None, yticklabels=None, ytickrot=None):
-    """
-    set xlabel/ylabel/xticks/yticks/title (including rotation of ticks)
+    """set xlabel/ylabel/xticks/yticks/title (including rotation of ticks)
 
-    :param plt: the matplotlib pyplot object
-    :param ax: axis on which to label
-    :param xlabel: the xlabel string, defaults to None
-    :param ylabel: the ylabel string, defaults to None
-    :param title: the title string, defaults to None
-    :param xticklocs: the location of xticks, defaults to None
-    :param xticklabels: the labels of xticks, defaults to None
-    :param xtickrot: the rotation angle in degrees of xtick labels, defaults to None
-    :param yticklocs: the location of yticks, defaults to None
-    :param yticklabels: the labels of yticks, defaults to None
-    :param ytickrot: the rotation angle in degrees of ytick labels, defaults to None
+    Args:
+        plt: the matplotlib pyplot object
+        ax: axis on which to label
+        xlabel: the xlabel string, defaults to None
+        ylabel: the ylabel string, defaults to None
+        title: the title string, defaults to None
+        xticklocs: the location of xticks, defaults to None
+        xticklabels: the labels of xticks, defaults to None
+        xtickrot: the rotation angle in degrees of xtick labels,
+            defaults to None
+        yticklocs: the location of yticks, defaults to None
+        yticklabels: the labels of yticks, defaults to None
+        ytickrot: the rotation angle in degrees of ytick labels,
+            defaults to None
     """
     
     assert plt is not None or ax is not None
@@ -84,18 +88,21 @@ def set_text(plt:plt=None, ax:matplotlib.axes.Axes=None, xlabel=None, ylabel=Non
         
 def custom_legend(ax, text, xy=(0.5, 0.5), box=True, box_bgcolor=(1.0, 1, 1, 1),
                   box_edgecolor=(0.0, 0.0, 0.0, 0.1)):
-    """
-    create a custom legend/text (without color strip) 
+    """create a custom legend/text (without color strip)
 
-    :param ax: mpl axes object
-    :param text: the text to add (str or list); if list added with `\n`
-    :param xy: the (x,y) offset fraction, relative to the BOTTOM-LEFT point, 
-                        defaults to (0.5, 0.5)
-    :param box: whether to add a bounding box, defaults to True
-    :param box_bgcolor: the background color of the box, defaults to (1.0, 1, 1, 1)
-    :param box_edgecolor: the edge color of the box, defaults to (0.0, 0.0, 0.0, 0.1)
-    
-    :return ax: the axis object
+    Args:
+        ax: mpl axes object
+        text: the text to add (str or list); if list added with `\n`
+        xy: the (x,y) offset fraction, relative to the BOTTOM-LEFT
+            point, defaults to (0.5, 0.5)
+        box: whether to add a bounding box, defaults to True
+        box_bgcolor: the background color of the box, defaults to (1.0,
+            1, 1, 1)
+        box_edgecolor: the edge color of the box, defaults to (0.0, 0.0,
+            0.0, 0.1)
+
+    Returns:
+        `ax`, the axis object
     """
     
     if isinstance(text, list):

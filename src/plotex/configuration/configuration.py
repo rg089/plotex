@@ -13,12 +13,14 @@ class BackendConfiguration():
     
     
     def __init__(self, url=None, override=False, **kwargs):
-        """
-        initializing the configuration class
-        
-        :param url: the url of the config to create a new config, defaults to None
-        :param override: if the config from the specified link already exists, whether to create it again
-                         (used if in-place changes have been made to the url)
+        """initializing the configuration class
+
+        Args:
+            url: the url of the config to create a new config, defaults
+                to None
+            override: if the config from the specified link already
+                exists, whether to create it again (used if in-place
+                changes have been made to the url)
         :kwargs: other keyword arguments can include arguments for theme, style, palette etc.
         """
         if url is None:
@@ -31,11 +33,13 @@ class BackendConfiguration():
 
 
     def __fetch_content(self, url):
-        """
-        fetches the config params from the url if not locally present
+        """fetches the config params from the url if not locally present
 
-        :raises Exception: if issue in fetching and decoding
-        :return str: returns the content from the url
+        Raises:
+            Exception: if issue in fetching and decoding
+
+        Returns:
+            returns the content from the url
         """
         print(f"[INFO] Fetching configuration parameters from {url}!")
         try:
@@ -48,10 +52,10 @@ class BackendConfiguration():
 
 
     def __generate_content_path(self):
-        """
-        creates the config by using a cached file, or fetching from the internet if cached file not present
+        """creates the config by using a cached file, or fetching from the internet if cached file not present
 
-        :return: the file path of the config file
+        Returns:
+            the file path of the config file
         """
         url_hash = hash_url(self.url)
         fpath = combine_hash(BackendConfiguration.CONFIG_FILE_PATH, url_hash)
@@ -79,16 +83,12 @@ class BackendConfiguration():
                 
     
     def reset(self):
-        """
-        reset the parameters to the original matplotlib ones
-        """
+        """reset the parameters to the original matplotlib ones"""
         plt.rcdefaults()
         
         
     def initialize(self):
-        """
-        initializes the configuration file by setting the style from the config file
-        """
+        """initializes the configuration file by setting the style from the config file"""
                 
         if self.style is not None:
             sns.set_style(self.style)

@@ -3,11 +3,13 @@ import base64
 
 
 def hash_url(url):
-    """
-    generate a hash for the url
+    """generate a hash for the url
 
-    :param url: the url string
-    :return: the generated hash
+    Args:
+        url: the url string
+
+    Returns:
+        the generated hash
     """
     # Take the hash of the URL
     url_hash = hashlib.sha1(url.encode('utf-8')).hexdigest()

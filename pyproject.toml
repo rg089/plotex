@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "plotex"
-version = "0.0.8"
+version = "0.0.9"
 authors = [
   { name="Rishabh Gupta", email="rishabhforprojects@gmail.com" },
 ]
