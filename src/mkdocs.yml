@@ -4,6 +4,7 @@ theme:
 
 plugins:
   - mkdocstrings
+  - search
   
 nav:
   - Calculation Docs: index.md
