@@ -1,3 +1,6 @@
+![logo](assets/plotex_lightmode.png#only-light)
+![logo](assets/plotex_darkmode.png#only-dark)
+
 This site contains the project documentation for the
 `calculator` project that is a toy module used in the
 Real Python tutorial

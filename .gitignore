@@ -159,3 +159,4 @@ instructions.md
 # src/docs.sh
 src/site
 # src/mkdocs.yml
+src/docs/assets/websites_used.txt
