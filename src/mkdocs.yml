@@ -1,10 +1,16 @@
 site_name: Plotex
-
+site_url: https://rg089.github.io/plotex
 
 theme:
   name: "material"
   features:
-    - navigation.indexes 
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.path
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.share
 
   font:
     text: Merriweather
@@ -19,7 +25,7 @@ theme:
       primary: black
       accent: deep orange
       toggle:
-        icon: material/brightness-7 
+        icon: material/weather-night
         name: Switch to dark mode
 
     # Palette toggle for dark mode
@@ -27,16 +33,29 @@ theme:
       primary: black
       accent: deep orange
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Switch to light mode
+
+  icon:
+    repo: fontawesome/brands/github
 
 
 plugins:
   - mkdocstrings:
   - search
+  - social:
+      cards_color:
+        fill: "#0FF1CE" 
+        text: "#FFFFFF"
+      cards_font: Roboto
   
 nav:
   - Overview: index.md
-  - API: api.md
   - Frequent Snippets: frequent.md
+  - API: 
+    - Overview of the API: api/index.md # Named as index to use it in API section directly, see `navigation.indexes`
+    - Main: api/plotex_main.md
+  - Changelog: changelog.md
 
+repo_url: https://github.com/rg089/plotex
+repo_name: rg089/plotex
