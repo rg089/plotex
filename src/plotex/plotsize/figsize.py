@@ -24,7 +24,7 @@ class Sizing():
             self.config = BackendConfiguration(**config_kwargs)
             self.config.initialize()
         self.params = None
-        self.config = self.__load_config()
+        self.size_config = self.__load_config()
         
         
     def __load_config(self):
@@ -83,7 +83,7 @@ class Sizing():
             float: the width in pts
         """
         if publisher in self.config['width']:
-            width = self.config['width'][publisher]
+            width = self.size_config['width'][publisher]
         else:
             print(f'[INFO] Publisher "{publisher}" not found, setting to ACL format! \
                   To save this publisher, give the values for both publisher and width')
@@ -100,8 +100,8 @@ class Sizing():
             publisher (str): the publisher
             width (float): the width in pts
         """
-        self.config['width'][publisher] = width
-        save_file(self.config, Sizing.CONFIG_PATH)
+        self.size_config['width'][publisher] = width
+        save_file(self.size_config, Sizing.CONFIG_PATH)
 
 
     def adjust_font_size(self, subplots, fraction, **kwargs):
