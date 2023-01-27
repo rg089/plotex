@@ -1,4 +1,4 @@
-import os
+import os, json
 import functools
 
 
@@ -20,8 +20,13 @@ def save_file(content, fpath):
     base_folder = os.path.dirname(fpath)
     os.makedirs(base_folder, exist_ok=True)
     
-    with open(fpath, "w") as f:
-        f.write(content)
+    if fpath.endswith('.json'):
+        with open(fpath, "w") as f:
+            json.dump(content)
+    else:
+        assert isinstance(content, str)
+        with open(fpath, "w") as f:
+            f.write(content)
 
 
 def check_if_exists(fpath):
