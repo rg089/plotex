@@ -82,11 +82,11 @@ class Sizing():
         Returns:
             float: the width in pts
         """
-        if publisher in self.config['width']:
+        if publisher in self.size_config['width']:
             width = self.size_config['width'][publisher]
         else:
-            print(f'[INFO] Publisher "{publisher}" not found, setting to ACL format! \
-                  To save this publisher, give the values for both publisher and width')
+            print(f'[INFO] Publisher "{publisher}" not found, setting to ACL format!')
+            print('To save this publisher, give the values for both publisher and width')
             width = 455.244
             
         return width
@@ -94,12 +94,13 @@ class Sizing():
     
     def __cache_width(self, publisher:str, width:float):
         """
-        caches the publisher:width mapping 
+        caches the `publisher:width` mapping 
 
         Args:
             publisher (str): the publisher
             width (float): the width in pts
         """
+        print(f'[INFO] Caching {publisher}:{width} mapping!')
         self.size_config['width'][publisher] = width
         save_file(self.size_config, Sizing.CONFIG_PATH)
 
@@ -257,7 +258,10 @@ class Sizing():
         Returns:
             the width in inches
         """
-        width_pt = width or self.__get_width_publisher(publisher=publisher, width=width)
+        if publisher is not None:
+            width_pt = self.__get_width_publisher(publisher=publisher, width=width)
+        else:
+            width_pt = width 
         fig_width_pt = width_pt 
         inches_per_pt = 1 / 72.27
 
@@ -292,6 +296,8 @@ class Sizing():
         
         if width_in_pts:
             fig_width_in = self.convert_width_to_inches(width=width, publisher=publisher)
+        else:
+            fig_width_in = width
             
         fig_width_in *= fraction
         fig_height_in = fig_width_in * golden_ratio * (subplots[0] / subplots[1])
