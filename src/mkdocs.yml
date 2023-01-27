@@ -14,6 +14,7 @@ theme:
     - navigation.top
     - search.suggest
     - search.share
+    - navigation.footer
 
   font:
     text: Merriweather
@@ -54,7 +55,7 @@ plugins:
   
 nav:
   - Overview: index.md
-  - Frequent Snippets: frequent.md
+  - Snippets: frequent.md
   - API: 
     - Overview of the API: api/index.md # Named as index to use it in API section directly, see `navigation.indexes`
     - Main: api/plotex_main.md
@@ -72,4 +73,9 @@ extra:
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/plotex/
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/rg089_    
+      link: https://twitter.com/rg089_
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/rg089/
+
+copyright: Copyright &copy; 2022 Rishabh Gupta
+   
