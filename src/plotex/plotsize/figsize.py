@@ -1,10 +1,17 @@
 import matplotlib.pyplot as plt
 import math
-import difflib
-from plotex.configuration import BackendConfiguration
+import difflib, os
+import json
+import requests
 
+from plotex.configuration import BackendConfiguration
+from plotex.utils.general import save_file
 
 class Sizing():
+    
+    CONFIG_URL = 'https://gist.githubusercontent.com/rg089/92540eef5ee88de5d2770a453c85c489/raw/b127ba7b0e7eff3c5eddf1202f01595e5c60c949/size_config.json'
+    CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config_files/size_config.json")
+    
     
     def __init__(self, config=None, **config_kwargs):
         """initialize the sizing class
@@ -17,8 +24,21 @@ class Sizing():
             self.config = BackendConfiguration(**config_kwargs)
             self.config.initialize()
         self.params = None
-    
-    
+        self.config = self.__load_config()
+        
+        
+    def __load_config(self):
+        if os.path.exists(Sizing.CONFIG_PATH):
+            with open(Sizing.CONFIG_PATH, 'r') as f:
+                config = json.load(f)
+        else:
+            r = requests.get(Sizing.CONFIG_URL)
+            config = r.json()
+            save_file(content=config, fpath=Sizing.CONFIG_PATH)
+            
+        return config
+            
+            
     def __save_params(self):
         """save a copy of the current rcParams"""
         self.params = plt.rcParams.copy()
@@ -30,24 +50,58 @@ class Sizing():
             plt.rcParams.update(self.params)
     
     
-    def __get_width_publisher(self, publisher):
+    def __get_width_publisher(self, publisher, width=None):
         """get the width in pts given the name of the publisher
 
         Args:
-            publisher: the name of the publisher
+            publisher (str): the name of the publisher
+            width (float): if width is specified, then it is cached
 
         Returns:
-            the width in pts
+            float: the width in pts
         """
-        if publisher == 'thesis':
-            width = 426.79135
-        elif publisher == 'acl':
-            width = 455.244
+        publisher = publisher.lower()
+        
+        if width is not None:
+            self.__cache_width(publisher, width)
+            return width
+        
+        width = self.__read_width(publisher)
+            
+        return width
+    
+    
+    def __read_width(self, publisher:str):
+        """
+        reads the width from the config file for the supplied publisher. \
+        If not found, then use the ACL format width
+
+        Args:
+            publisher (str): the publisher name
+
+        Returns:
+            float: the width in pts
+        """
+        if publisher in self.config['width']:
+            width = self.config['width'][publisher]
         else:
-            print(f'[INFO] Publisher "{publisher}" not found, setting to ACL format!')
+            print(f'[INFO] Publisher "{publisher}" not found, setting to ACL format! \
+                  To save this publisher, give the values for both publisher and width')
             width = 455.244
             
         return width
+    
+    
+    def __cache_width(self, publisher:str, width:float):
+        """
+        caches the publisher:width mapping 
+
+        Args:
+            publisher (str): the publisher
+            width (float): the width in pts
+        """
+        self.config['width'][publisher] = width
+        save_file(self.config, Sizing.CONFIG_PATH)
 
 
     def adjust_font_size(self, subplots, fraction, **kwargs):
@@ -203,7 +257,7 @@ class Sizing():
         Returns:
             the width in inches
         """
-        width_pt = width or self.__get_width_publisher(publisher=publisher)
+        width_pt = width or self.__get_width_publisher(publisher=publisher, width=width)
         fig_width_pt = width_pt 
         inches_per_pt = 1 / 72.27
 
@@ -214,7 +268,8 @@ class Sizing():
     def get_size(self, width=None, publisher=None, width_in_pts=True, reinitialize=True, fraction=1, 
                    subplots=(1, 1), **kwargs):
         """finds the ideal size of the plot and adjusts the text sizes according to the required dimensions
-
+            if both publisher and width are specified, then the publisher:width is cached
+            
         Args:
             width: the width, defaults to None
             publisher: the name of the publisher, defaults to None

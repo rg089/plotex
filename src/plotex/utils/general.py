@@ -14,7 +14,7 @@ def save_file(content, fpath):
     """saves the supplied content in a text file
 
     Args:
-        content (str): the content
+        content (str/dict): the content
         fpath (str): the file path to save at
     """
     base_folder = os.path.dirname(fpath)
