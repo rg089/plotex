@@ -1,5 +1,8 @@
 site_name: Plotex
 site_url: https://rg089.github.io/plotex
+site_author: Rishabh Gupta
+site_description: >-
+  Generating elegant, publication-ready plots made simple
 
 theme:
   name: "material"
@@ -45,9 +48,9 @@ plugins:
   - search
   - social:
       cards_color:
-        fill: "#0FF1CE" 
-        text: "#FFFFFF"
-      cards_font: Roboto
+        fill: "black" 
+        text: "white"
+      cards_font: Cinzel
   
 nav:
   - Overview: index.md
@@ -59,3 +62,14 @@ nav:
 
 repo_url: https://github.com/rg089/plotex
 repo_name: rg089/plotex
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rg089
+    - icon: fontawesome/solid/globe
+      link: https://rg089.github.io
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/plotex/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/rg089_    
