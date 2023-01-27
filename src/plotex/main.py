@@ -16,12 +16,26 @@ class Plotex:
         (the url for the config file), `cmap/palette` for the cmap, `style/theme` \
         for the seaborn style
         """
+        init = kwargs.get('initialize', True)
+        if init:
+            self.init(**kwargs)
+            
+    
+    def init(self, **kwargs):
+        """initialize the controller
+
+        Args:
+            **kwargs: parameters for the config file, the params include
+                `url` \
+        (the url for the config file), `cmap/palette` for the cmap, `style/theme` \
+        for the seaborn style
+        """
         self.config = BackendConfiguration(**kwargs)
         self.sizer = Sizing(config=self.config)
         self.params = None
         self.config.initialize()
         
-        
+
     def skeleton(self, width=None, publisher=None, width_in_pts=True, reinitialize=True, fraction=1, 
                    subplots=(1, 1), **kwargs):
         """finds the ideal size of the plot and adjusts the text sizes according to the required dimensions
@@ -115,3 +129,6 @@ class Plotex:
     def save(self, save_path, fig=None, plt=None, format='pdf'):
         save(save_path, fig=fig, plt=plt, format=format)
         
+
+plotex = Plotex(initialize=False)
+plotex.initialize = plotex.init
