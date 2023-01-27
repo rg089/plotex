@@ -2,7 +2,7 @@ site_name: Plotex
 site_url: https://rg089.github.io/plotex
 site_author: Rishabh Gupta
 site_description: >-
-  Generating elegant, publication-ready plots made simple
+  Creating elegant, publication-ready plots made simple
 
 theme:
   name: "material"
@@ -50,7 +50,7 @@ plugins:
       cards_color:
         fill: "black" 
         text: "white"
-      cards_font: Cinzel
+      cards_font: Montserrat
   
 nav:
   - Overview: index.md
