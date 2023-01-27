@@ -160,3 +160,4 @@ instructions.md
 src/site
 # src/mkdocs.yml
 src/docs/assets/websites_used.txt
+src/experiments/

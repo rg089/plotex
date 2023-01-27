@@ -22,7 +22,7 @@ def save_file(content, fpath):
     
     if fpath.endswith('.json'):
         with open(fpath, "w") as f:
-            json.dump(content)
+            json.dump(content, f)
     else:
         assert isinstance(content, str)
         with open(fpath, "w") as f:
