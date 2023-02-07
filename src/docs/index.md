@@ -9,10 +9,10 @@ Plotex is a minimal wrapper over matplotlib (and to some extent, seaborn). It is
 The site is divided into the following sections:
 
 1. [Snippets](frequent.md)
-2. [API](api.md)
+2. [API](api/index.md)
 3. [Changelog](changelog.md)
 
-[Snippets](frequent.md) contains examples and snippets that can be used frequently. [API](api.md) is the resting place for the documentation of individual classes and functions while [Changelog](changelog.md) is employed to track the added/removed functionalities in each version.
+[Snippets](frequent.md) contains examples and snippets that can be used frequently. [API](api/index.md) is the resting place for the documentation of individual classes and functions while [Changelog](changelog.md) is employed to track the added/removed functionalities in each version.
 
 ## Installation
 
