@@ -1,32 +1,54 @@
 ![logo](assets/plotex_lightmode.png#only-light)
 ![logo](assets/plotex_darkmode.png#only-dark)
 
-This site contains the project documentation for the
-`calculator` project that is a toy module used in the
-Real Python tutorial
-[Build Your Python Project Documentation With MkDocs](
-    https://realpython.com/python-project-documentation-with-mkdocs/).
-Its aim is to give you a framework to build your
-project documentation using Python, MkDocs,
-mkdocstrings, and the Material for MkDocs theme.
+## *Creating elegant, publication-ready plots made simple*
+Plotex is a minimal wrapper over matplotlib (and to some extent, seaborn). It is primarily designed to ease plot generation for publications by taking care of the configuration (plot size, color schemes, font type/size/weight etc.) as well as enable rapid prototyping to reduce manual effort.
 
 ## Table Of Contents
 
-The documentation follows the best practice for
-project documentation as described by Daniele Procida
-in the [Diátaxis documentation framework](https://diataxis.fr/)
-and consists of four separate parts:
+The site is divided into the following sections:
 
-1. [Frequent Snippets](frequent.md)
+1. [Snippets](frequent.md)
 2. [API](api.md)
+3. [Changelog](changelog.md)
 
-Quickly find what you're looking for depending on
-your use case by looking at the different pages.
+[Snippets](frequent.md) contains examples and snippets that can be used frequently. [API](api.md) is the resting place for the documentation of individual classes and functions while [Changelog](changelog.md) is employed to track the added/removed functionalities in each version.
+
+## Installation
+
+Run the following command for installing:
+```
+pip install plotex
+```
+
+## Sample Usage
+
+```
+from plotex import plotex
+plotex.init(cmap='pastel')
+
+subplots = (1,1)
+
+figsize = plotex.skeleton(publisher='acl', fraction=0.5, subplots=subplots)
+
+plotex.update_textsize(legend=3, xticks=-1, yticks=1) # Defines the font offset for each element (ex. font size of legend is increased by 3 points, size of xticks is decreased by 1pt etc.)
+
+fig, axes = plt.subplots(nrows=subplots[0], ncols=subplots[1], figsize=figsize)
+
+axes.plot([1,2,3], [1,2,3], label='$y=x$')
+axes.plot([1,2,3], [1,4,9], label='$y=x^2$')
+
+plotex.set_text(ax=axes, xlabel='Values of x', ylabel='Values of y')
+plotex.save('sample.pdf', fig=fig)
+
+```
+
 
 ## Acknowledgements
 
-I want to thank my house plants for providing me with
-a negligible amount of oxygen each day. Also, I want
-to thank the sun for providing more than half of their
-nourishment free of charge.
+This project was mainly created for personal usage. I wanted a simple API where I could set a default theme once and use it repeatedly for multiple plots across various projects. I also wished for the ability to quickly change the font sizes/weights etc. without rewriting similar lines of code over and over again. 
 
+The references I used for writing this extremely simple and minimal library are:
+- [Matplotlib](https://matplotlib.org/stable/tutorials/)
+- [It's more fun to compute](https://jwalton.info/Embed-Publication-Matplotlib-Latex/)
+- [Markov Wanderer](http://aeturrell.com/2018/01/31/publication-quality-plots-in-python/)
