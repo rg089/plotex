@@ -25,7 +25,7 @@ pip install plotex
 
 ```
 from plotex import plotex
-plotex.init(cmap='pastel')
+plotex.init(colorblind=True)
 
 subplots = (1,1)
 
@@ -46,9 +46,9 @@ plotex.save('sample.pdf', fig=fig)
 
 ## Acknowledgements
 
-This project was mainly created for personal usage. I wanted a simple API where I could set a default theme once and use it repeatedly for multiple plots across various projects. I also wished for the ability to quickly change the font sizes/weights etc. without rewriting similar lines of code over and over again. 
+This project was mainly created for personal usage. I wanted a simple API where I could set a default theme once and use it repeatedly for multiple plots across various projects. I also required the ability to quickly change the font sizes/weights etc. without rewriting the same/similar lines of code over and over again. 
 
 The references I used for writing this extremely simple and minimal library are:
-- [Matplotlib](https://matplotlib.org/stable/tutorials/)
-- [It's more fun to compute](https://jwalton.info/Embed-Publication-Matplotlib-Latex/)
-- [Markov Wanderer](http://aeturrell.com/2018/01/31/publication-quality-plots-in-python/)
+* [Matplotlib](https://matplotlib.org/stable/tutorials/)
+* [It's more fun to compute](https://jwalton.info/Embed-Publication-Matplotlib-Latex/)
+* [Markov Wanderer](http://aeturrell.com/2018/01/31/publication-quality-plots-in-python/)
