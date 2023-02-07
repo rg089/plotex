@@ -48,7 +48,8 @@ plotex.save('sample.pdf', fig=fig)
 
 This project was mainly created for personal usage. I wanted a simple API where I could set a default theme once and use it repeatedly for multiple plots across various projects. I also required the ability to quickly change the font sizes/weights etc. without rewriting the same/similar lines of code over and over again. 
 
-The references I used for writing this extremely simple and minimal library are:
+The references I used while writing Plotex are:
+
 * [Matplotlib](https://matplotlib.org/stable/tutorials/)
 * [It's more fun to compute](https://jwalton.info/Embed-Publication-Matplotlib-Latex/)
 * [Markov Wanderer](http://aeturrell.com/2018/01/31/publication-quality-plots-in-python/)
